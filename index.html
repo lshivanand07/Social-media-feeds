@@ -7,7 +7,40 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    Hello World!  JavaScript Assignment
+   <h1> 4. The Social Media Feed</h1> <br>
+    <div class="socialMediaForm">
+        <form action="" id="from">
+            <h1 id="formHeading">Social Media Posts</h1>
+    <label for="author">author:</label> 
+    <input type="text" name="" id="author" placeholder="enter your name" required><br>
+    <label for="likes">likes: </label>
+    <input type="number" name="" id="likes" value="0" required><br>
+    <label for="tags">tags: </label>
+    <input type="text" name="" id="tags" placeholder="enter tags on post" required><br>
+    <label for="content">content:</label>
+    <textarea name=""  id="content" placeholder="enter Content of post"></textarea required><br>
+    <button id="submitBtn">Save Post</button>
+
+    <button id="saveUpdateButton">Save Update</button>
+    <button id="cancelUpdateButton">Cancel</button>
+     </form>
+    </div>
+
+     <button id="addNewPost">Add New Post Form</button>
+     <button id="FeedList">Posts List</button>
+     <button id="usernamesSort">usernames Sort</button>
+    <button id="getTrendingPostsButton">getTrendingPosts</button>
+
+    <div class="socialMediaPosts">
+    </div>
+
+    <div class="getPostsByTag">
+     <input type="text" name="" placeholder="enter tags name" id="getPostsByTagSearchBar" required>
+    <button id="getPostsByTagButton">get Posts By Tag</button>
+   </div>
+   <p id="getPostsByTagErrorMsg"></p>
+
 </body>
-<script src="javascript/assignment-1.js"></script>
+<!-- <script src="javascript/assignment-1.js"></script> -->
+<script src="javascript/assignment-2.js"></script>
 </html>
