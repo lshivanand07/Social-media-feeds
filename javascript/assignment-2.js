@@ -331,6 +331,7 @@ document.getElementsByClassName("socialMediaPosts")[0].addEventListener("click",
 document.getElementById("saveUpdateButton").addEventListener("click", updatedPost);
 
 function updatedPost(event){
+     var posts = JSON.parse(localStorage.getItem("posts")) || [];
    console.log("hi hello!")
     event.preventDefault();
     console.log("CurrentIndex1: ",CurrentIndex);
