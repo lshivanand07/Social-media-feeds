@@ -49,8 +49,7 @@
 //    alert("page is refreshed.")
 // },10000)
 
-// 4. The Social Media Feed:
-
+//4. The Social Media Feed:
 document.getElementById("addNewPost").addEventListener("click", function(){
     document.getElementsByClassName("socialMediaForm")[0].setAttribute("style","display:block");
        document.getElementById("submitBtn").setAttribute("style","display:block");
@@ -60,11 +59,11 @@ document.getElementById("addNewPost").addEventListener("click", function(){
 })
 // A. Create a form to save posts with the following fields: id (auto-generate), author, content, likes, and tags
 
-var posts = JSON.parse(localStorage.getItem("posts")) || [];
-
 document.getElementById("submitBtn").addEventListener("click", function(element){
 
     element.preventDefault();
+
+    var posts = JSON.parse(localStorage.getItem("posts")) || [];
 
     var authorName = document.getElementById("author").value;
     var like = document.getElementById("likes").value;
@@ -83,6 +82,7 @@ document.getElementById("submitBtn").addEventListener("click", function(element)
 
     var likes = Number(like)
     var str = tags.split(" ");
+    console.log("hhhbhb")
       posts.push({
         Id:id,
         authorName:authorName,
@@ -92,6 +92,7 @@ document.getElementById("submitBtn").addEventListener("click", function(element)
     })
      localStorage.setItem("posts", JSON.stringify(posts));
      document.getElementById("from").reset();
+     console.log(posts)
     }
     }
 }
@@ -105,7 +106,7 @@ function getTrendingPosts(){
 
     document.getElementsByClassName("socialMediaPosts")[0].innerHTML=""
    
-     var posts= JSON.parse(localStorage.getItem("posts"))
+    var posts = JSON.parse(localStorage.getItem("posts")) || [];
      
      var temp=0
      for(let i=0; i<posts.length; i++){
@@ -135,7 +136,7 @@ function getTrendingPosts(){
 document.getElementById("getPostsByTagButton").addEventListener("click",getPostsByTag);
 
 function getPostsByTag(){
-      var posts= JSON.parse(localStorage.getItem("posts"))
+      var posts= JSON.parse(localStorage.getItem("posts")) || [];
 
     var tagsName = document.getElementById("getPostsByTagSearchBar").value;
 
@@ -189,7 +190,7 @@ function usernamesAlphabeticallySort(){
 
     document.getElementsByClassName("socialMediaPosts")[0].innerHTML="";
 
-     var posts= JSON.parse(localStorage.getItem("posts"))
+     var posts= JSON.parse(localStorage.getItem("posts")) || [];
 
      posts.sort((a,b)=>{
         return a.authorName.localeCompare(b.authorName)
@@ -219,7 +220,7 @@ document.getElementById("FeedList").addEventListener("click", feedList);
 
      document.getElementsByClassName("socialMediaPosts")[0].innerHTML="";
 
-      var posts = JSON.parse(localStorage.getItem("posts"))
+      var posts = JSON.parse(localStorage.getItem("posts")) || [];
      for(let i=0; i<posts.length; i++){
         var postsdiv = document.createElement("div");
         postsdiv.className="postsdiv"
@@ -267,7 +268,7 @@ document.getElementsByClassName("socialMediaPosts")[0].addEventListener("click",
       
 
         let postDiv = element.target.closest(".postsdiv");
-        var posts =  JSON.parse(localStorage.getItem("posts"))
+        var posts = JSON.parse(localStorage.getItem("posts")) || [];
 
          var index =  postDiv.getAttribute("indexValue");
        console.log("index: ",index);
@@ -285,7 +286,7 @@ document.getElementsByClassName("socialMediaPosts")[0].addEventListener("click",
 });
 
 // H. Write a function to edit existing post details.
-var posts = JSON.parse(localStorage.getItem("posts"));
+//var posts = JSON.parse(localStorage.getItem("posts"));
   var CurrentIndex = null;
 
 document.getElementsByClassName("socialMediaPosts")[0].addEventListener("click", function (element) {
@@ -298,7 +299,7 @@ document.getElementsByClassName("socialMediaPosts")[0].addEventListener("click",
       
       var UpdateConfirm = confirm("Are you want to Update this post?");
       if(UpdateConfirm===true){
-
+       var posts = JSON.parse(localStorage.getItem("posts")) || [];
         document.getElementsByClassName("socialMediaPosts")[0].innerHTML="";
 
         var socialMediaForm = document.getElementsByClassName("socialMediaForm")[0];
