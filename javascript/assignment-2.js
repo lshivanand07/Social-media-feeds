@@ -331,10 +331,10 @@ document.getElementsByClassName("socialMediaPosts")[0].addEventListener("click",
 document.getElementById("saveUpdateButton").addEventListener("click", updatedPost);
 
 function updatedPost(event){
+
      var posts = JSON.parse(localStorage.getItem("posts")) || [];
-   console.log("hi hello!")
+
     event.preventDefault();
-    console.log("CurrentIndex1: ",CurrentIndex);
 
     posts[CurrentIndex].authorName =  document.getElementById("author").value;
     posts[CurrentIndex].likes = document.getElementById("likes").value;
@@ -346,7 +346,6 @@ function updatedPost(event){
      alert("your post has been successfully Updated")
       document.getElementsByClassName("socialMediaForm")[0].setAttribute("style","display:none");
 
-   
   }
 
  document.getElementById("cancelUpdateButton").addEventListener("click",cancelUpdate);
