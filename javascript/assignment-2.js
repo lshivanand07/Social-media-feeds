@@ -1,58 +1,60 @@
-/* 1 {a:'one', b:'2', f:'5', c:'33', p:'do', q:'one' }: Using this object makes an array consisting of all the keys of the given object in reverse order. 
-(output should be ['q', 'p', 'c', 'f', 'b', 'a']) */
+// /* 1 {a:'one', b:'2', f:'5', c:'33', p:'do', q:'one' }: Using this object makes an array consisting of all the keys of the given object in reverse order. 
+// (output should be ['q', 'p', 'c', 'f', 'b', 'a']) */
 
-let obj ={a:'one', b:'2', f:'5', c:'33', p:'do', q:'one' }
+// let obj ={a:'one', b:'2', f:'5', c:'33', p:'do', q:'one' }
 
-let Keys = Object.keys(obj);
-let reverse = [];
-for(let i=Keys.length-1; i>=0; i--){
-  reverse.push(Keys[i]);
-}
-console.log("reverse object Keys are: ",reverse)
+// let Keys = Object.keys(obj);
+// let reverse = [];
+// for(let i=Keys.length-1; i>=0; i--){
+//   reverse.push(Keys[i]);
+// }
+// console.log("reverse object Keys are: ",reverse)
 
-{ data: [{a:'one', id:'22'}, {a:'four', id:'7'}, {a:'six', b:'2'},  {a:'sixty', id:'24'},  {a:'five', id:'212'}] }
+// { data: [{a:'one', id:'22'}, {a:'four', id:'7'}, {a:'six', b:'2'},  {a:'sixty', id:'24'},  {a:'five', id:'212'}] }
 
-/* 2 { data: [{a:'one', id:'22'}, {a:'four', id:'7'}, {a:'six', b:'2'},  {a:'sixty', id:'24'},  {a:'five', id:'212'}] }
- From the given object, remove the data arrays item with id as '24'. (consider that the data arrays order will be different every time you get, 
-   so write code in such a way that given any object it will remove the item with id as 24 if it exists ). */
+// /* 2 { data: [{a:'one', id:'22'}, {a:'four', id:'7'}, {a:'six', b:'2'},  {a:'sixty', id:'24'},  {a:'five', id:'212'}] }
+//  From the given object, remove the data arrays item with id as '24'. (consider that the data arrays order will be different every time you get, 
+//    so write code in such a way that given any object it will remove the item with id as 24 if it exists ). */
 
-let obj2 = { data: [{a:'one', id:'22'}, {a:'four', id:'7'}, {a:'six', b:'2'},  {a:'sixty', id:'24'},  {a:'five', id:'212'}] };
-console.log("before delete 24: ",obj2);
-for(let i=0; i<obj2.data.length; i++){
-   if(obj2.data[i].id==="24"){
-      obj2.data.splice(i,1);
-   }
-}
+// let obj2 = { data: [{a:'one', id:'22'}, {a:'four', id:'7'}, {a:'six', b:'2'},  {a:'sixty', id:'24'},  {a:'five', id:'212'}] };
+// console.log("before delete 24: ",obj2);
+// for(let i=0; i<obj2.data.length; i++){
+//    if(obj2.data[i].id==="24"){
+//       obj2.data.splice(i,1);
+//    }
+// }
 
-console.log("after delete 24: ",obj2);
+// console.log("after delete 24: ",obj2);
 
-// 3. Write a function to 
-// A. Calculate the height of the end user's browser screen
+// // 3. Write a function to 
+// // A. Calculate the height of the end user's browser screen
 
-console.log("height of the end user's browser screen: ",screen.height);
+// console.log("height of the end user's browser screen: ",screen.height);
 
-//  B. To console the name of the web host
-console.log("name of the web host: ",location.hostname);
+// //  B. To console the name of the web host
+// console.log("name of the web host: ",location.hostname);
 
-// C. To show a warning message if there is no https protocol used in the visited website.
-let protocol = location.protocol;
-if(protocol!=="https:"){
-   alert("This website has the http protocol, not https.")
-}
-else{
-   console.log("this  website has the https protocol")
-}
+// // C. To show a warning message if there is no https protocol used in the visited website.
+// let protocol = location.protocol;
+// if(protocol!=="https:"){
+//    alert("This website has the http protocol, not https.")
+// }
+// else{
+//    console.log("this  website has the https protocol")
+// }
 
-//  D. To show an alert message after 10sec while the page is refreshed.
+// //  D. To show an alert message after 10sec while the page is refreshed.
 
-setTimeout(()=>{
-   alert("page is refreshed.")
-},10000)
+// setTimeout(()=>{
+//    alert("page is refreshed.")
+// },10000)
 
 // 4. The Social Media Feed:
 
 document.getElementById("addNewPost").addEventListener("click", function(){
     document.getElementsByClassName("socialMediaForm")[0].setAttribute("style","display:block");
+       document.getElementById("submitBtn").setAttribute("style","display:block");
+     document.getElementById("from").reset();
     document.getElementById("saveUpdateButton").setAttribute("style","display:none");
     document.getElementById("cancelUpdateButton").setAttribute("style","display:none");
 })
@@ -63,7 +65,7 @@ var posts = JSON.parse(localStorage.getItem("posts")) || [];
 document.getElementById("submitBtn").addEventListener("click", function(element){
 
     element.preventDefault();
-   
+
     var authorName = document.getElementById("author").value;
     var like = document.getElementById("likes").value;
     var tags =  document.getElementById("tags").value;
@@ -211,7 +213,9 @@ function usernamesAlphabeticallySort(){
 
 //F. Create a list view for the feeds. Each post should have delete and edit button
 
-document.getElementById("FeedList").addEventListener("click",function(){
+document.getElementById("FeedList").addEventListener("click", feedList);
+   
+   function feedList(){
 
      document.getElementsByClassName("socialMediaPosts")[0].innerHTML="";
 
@@ -252,35 +256,37 @@ document.getElementById("FeedList").addEventListener("click",function(){
 
         document.getElementsByClassName("socialMediaPosts")[0].setAttribute("style","color:black")
 
-      console.log(posts[i])
-
      }
-})
+}
 
 // G. Write a function to remove a post from the feed and update localStorage.
-
 document.getElementsByClassName("socialMediaPosts")[0].addEventListener("click", function (element) {
    element.preventDefault();
 
     if (element.target.innerHTML === "Delete") {
+      
 
         let postDiv = element.target.closest(".postsdiv");
-       var index =  postDiv.getAttribute("indexValue")
-       var updateLocalStorage =  JSON.parse(localStorage.getItem("posts"))
+        var posts =  JSON.parse(localStorage.getItem("posts"))
+
+         var index =  postDiv.getAttribute("indexValue");
+       console.log("index: ",index);
 
 //I. Implement an alert notification after a post is successfully deleted.
 
-        alert(`${updateLocalStorage[index].authorName}'s post has been successfully deleted.`)
+        alert(`${posts[index].authorName}'s post has been successfully deleted.`);
 
-        updateLocalStorage.splice(index,1)
-       localStorage.setItem("posts" , JSON.stringify(updateLocalStorage));
+        posts.splice(index,1)
+       localStorage.setItem("posts" , JSON.stringify(posts));
 
          postDiv.remove();
+          feedList();
     }
 });
 
 // H. Write a function to edit existing post details.
 var posts = JSON.parse(localStorage.getItem("posts"));
+  var CurrentIndex = null;
 
 document.getElementsByClassName("socialMediaPosts")[0].addEventListener("click", function (element) {
       
@@ -301,10 +307,9 @@ document.getElementsByClassName("socialMediaPosts")[0].addEventListener("click",
         socialMediaForm.style.backgroundColor="white";
         document.getElementById("formHeading").innerHTML="Update your Post"
         document.getElementById("submitBtn").setAttribute("style","display:none");
-
-      document.getElementsByClassName("socialMediaPosts")[0].append(socialMediaForm);
-          document.getElementById("saveUpdateButton").setAttribute("style","display:block");
-       document.getElementById("cancelUpdateButton").setAttribute("style","display:block");
+        document.getElementById("saveUpdateButton").setAttribute("style","display:block");
+        document.getElementById("cancelUpdateButton").setAttribute("style","display:block");
+        
 
         let postDiv = element.target.closest(".postsdiv");
          var index = postDiv.getAttribute("indexValue");
@@ -315,35 +320,37 @@ document.getElementsByClassName("socialMediaPosts")[0].addEventListener("click",
               var tag2 =  posts[index].tags[1];
            document.getElementById("tags").value =`${tag1} ${tag2}`;
       document.getElementById("content").value = posts[index].content;
-
-         document.getElementById("saveUpdateButton").addEventListener("click", updatedPost);
-
-function updatedPost(event){
-   console.log("hi hello!")
-    event.preventDefault();
-
-       posts[index].authorName =  document.getElementById("author").value;
-    posts[index].likes = document.getElementById("likes").value;
-    posts[index].tags =  document.getElementById("tags").value.split(" ");
-    posts[index].content = document.getElementById("content").value;
-
-     localStorage.setItem("posts", JSON.stringify(posts));
-
-     alert("your post has been successfully Updated")
-    
-      document.getElementsByClassName("socialMediaForm")[0].setAttribute("style","display:none");
-  }
+      CurrentIndex=index;
 
       }
 
  }
 })
 
+document.getElementById("saveUpdateButton").addEventListener("click", updatedPost);
+
+function updatedPost(event){
+   console.log("hi hello!")
+    event.preventDefault();
+    console.log("CurrentIndex1: ",CurrentIndex);
+
+    posts[CurrentIndex].authorName =  document.getElementById("author").value;
+    posts[CurrentIndex].likes = document.getElementById("likes").value;
+    posts[CurrentIndex].tags =  document.getElementById("tags").value.split(" ");
+    posts[CurrentIndex].content = document.getElementById("content").value;
+
+     localStorage.setItem("posts", JSON.stringify(posts));
+
+     alert("your post has been successfully Updated")
+      document.getElementsByClassName("socialMediaForm")[0].setAttribute("style","display:none");
+
+   
+  }
+
  document.getElementById("cancelUpdateButton").addEventListener("click",cancelUpdate);
 
   function cancelUpdate(event){
-   event.preventDefault();
-     
+   event.preventDefault(); 
    document.getElementsByClassName("socialMediaForm")[0].setAttribute("style","display:none");
   }
 
